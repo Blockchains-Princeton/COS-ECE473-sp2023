@@ -64,7 +64,7 @@ contracts/sAsset.sol
 5. After a contract is successfully deployed, you can see the instance under *Deployed Contracts*, where you can get your contract address and interact with the contract manually (e.g. if you call the `balanceOf` function of EUSD and enter your account address, you will get the number of EUSD tokens as output). 
 
 ## Submission
-You will need to submit the addresses of your deployed contracts. Please make sure you deploy and interact with your contract using the public address you had provided to us at the start of the class.
+You will need to submit the addresses of your deployed contracts. Please make sure you deploy and interact with your contract using the public address you had provided to us at the start of the class. **Make sure you [verify your contract](https://goerli.etherscan.io/verifyContract) on etherscan**- this would make it easier for you to interact with it and for us to check it.
 
 Because this code will be used in later parts, make sure you are able to interact with your smart contracts. Test the main functionalities of the tokens like `transfer`, `transferFrom`, and `mint`, `burn` for sAsset. Note that we use [Access Control](https://docs.openzeppelin.com/contracts/4.x/access-control) in sAsset to govern who can mint and burn tokens. The contract creator can grant minter and burner roles to other accounts by calling the `grantRole` function. You can select different accounts under *Account* to test these functions.
 
