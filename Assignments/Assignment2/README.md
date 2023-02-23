@@ -19,4 +19,4 @@ BNB / USD: 0x7b219F57a8e9C7303204Af681e9fA69d17ef626f
 2. Deploy the price feed contract for each asset, test the interface and copy their addresses. Once the deployment transactions are confirmed, you are able to find the deployed contracts in [etherscan](https://goerli.etherscan.io/) with https://goerli.etherscan.io/address/{:your_contract_address}.
 
 ## Submission
-Submit the **etherscan links** to the two contracts to this form: [https://forms.gle/waxpAsmz8icZaGmj6](https://forms.gle/waxpAsmz8icZaGmj6). Once the contracts are deployed, you can copy the address from Remix - Deployed Contracts.
+Submit the **etherscan links** to the two contracts to this form: [https://forms.gle/waxpAsmz8icZaGmj6](https://forms.gle/waxpAsmz8icZaGmj6).
