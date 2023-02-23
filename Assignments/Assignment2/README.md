@@ -1,4 +1,4 @@
-# Part 1: Creating price feeds
+# Assignment 2: Creating price feeds
 
 To reflect the value of other assets, we need to first obtain price feeds before minting synthetic assets. While everyone can get the latest price of a stock on NASDAQ and put it on the chain, data consumers may not want to trust any single data provider.
 
