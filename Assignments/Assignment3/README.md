@@ -53,7 +53,7 @@ The remaining functions are left for you to implement.
 We can test simple functions manually by interacting with Remix, but it is not a good idea when testing multiple contracts with composable functions. In this part, we will use [**Truffle**](https://trufflesuite.com/) to deploy and test smart contracts and [**Ganache**](https://github.com/trufflesuite/ganache) to create a local blockchain. The testing script provided in `test/test.js` is written in JavaScript.
 
 ### Start your local blockchain
-We have interacted with testnet Kovan and the local blockchain provided by Remix. Now we want to run our own nodes to create a local blockchain. 
+We have interacted with testnet Goerli and the local blockchain provided by Remix. Now we want to run our own nodes to create a local blockchain. 
 
 1. Install the prerequisite software:  [Node.js](https://nodejs.org/en/), and choose the LTS version (the one on the left).
 2. Install ganache-cli by running `npm install -g ganache-cli`. Then, run `ganache-cli` to run a node on your local blockchain. You can stop the node at any time with Ctrl-C.
