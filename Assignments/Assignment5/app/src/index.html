@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Synthetic Dapp</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {font-family: Arial;}
+            .tab {
+                overflow: hidden;
+                border: 1px solid #ccc;
+                background-color: #f1f1f1;
+            }
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 24px;
+                transition: 0.3s;
+                font-size: 20px;
+            }
+            .tab button:hover {
+                background-color: #ddd;
+            }
+            .tab button.active {
+                background-color: #ccc;
+            }
+            .tabcontent {
+                display: none;
+                padding: 6px 12px;
+                border: 1px solid #ccc;
+                border-top: none;
+            }
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }* {
+                box-sizing: border-box;
+            }
+            .column {
+                float: left;
+                width: 30%;
+                padding: 0 10px;
+            }
+            .row {margin: 0 -5px;}
+            .row:after {
+                content: "";
+                display: table;
+                clear: both;
+            }
+            @media screen and (max-width: 600px) {
+                .column {
+                    width: 100%;
+                    display: block;
+                    margin-bottom: 20px;
+                }
+            }
+            .card {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+                padding: 16px;
+                text-align: center;
+                background-color: #f1f1f1;
+            }
+            </style>
+    </head>
+
+
+    <body>
+        <!-- If you want a cooler name / slogan, change the following two lines. -->
+        <h1>Your Synthetic Exchange</h1>
+        <h3><i> Mint, invest and trade your synthetic assets in one stop.</i></h3>
+
+        <!-- Tab links -->
+        <div class="tab">
+            <button class="tablinks" onclick="openPage(event, 'Mint')">Mint</button>
+            <button class="tablinks" onclick="openPage(event, 'Pool')">Pool</button>
+            <button class="tablinks" onclick="openPage(event, 'Swap')">Swap</button>
+        </div>
+
+        <!-- Tab content -->
+
+        <div id="Mint" class="tabcontent">
+            <h3>Balances:</h3>
+            <p><strong class="balanceEUSD">loading...</strong> EUSD</p>
+            <p><strong class="balancesBNB">loading...</strong> sBNB</p>
+            <p><strong class="balancesTSLA">loading...</strong> sTSLA</p>
+
+            <div class="row">
+                <div style="float: left;width: 50%;padding: 0 10px;">
+                    <div class="card">
+                        <h3>Mint sAsset:</h3>
+                                            
+                        <p>
+                        <select name="sAsset" id="sAsset">
+                            <option value="sBNB">sBNB</option>
+                            <option value="sTSLA">sTSLA</option>
+                            </select> price: <a class="price"> &nbsp;<b>loading......</b>&nbsp; </a> EUSD
+                        </p>
+                        <p><label for="deposit">Deposit:</label>
+                        <input type="text" id="deposit" placeholder="e.g. 1000.00" /> EUSD
+                        </p>
+                        <div class="slidecontainer">
+                            <p>Collateral ratio:
+                            <input type="range" min="2" max="10" value="2" class="slider" id="CR"> &nbsp;<span id="CRvalue"></span>
+                            </p>
+                        </div>
+                        </p>
+                        <button onclick="App.checkPrice()">Check price</button>
+                        <button onclick="App.openPosition()">Open position</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="Pool" class="tabcontent">
+            <div class="row">
+                <div class="column">
+                    <h3>Reserves:</h3>
+                    <p><strong class="reservesBNB">loading...</strong> sBNB</p>
+                    <p><strong class="reservesTSLA">loading...</strong> sTSLA</p>
+                </div>
+
+                <div class="column">
+                    <h3>Balances:</h3>
+                    <p><strong class="balancesBNB">loading...</strong> sBNB</p>
+                    <p><strong class="balancesTSLA">loading...</strong> sTSLA</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <h3>Add liquidity:</h3>
+                        <p><label for="liquidity0">sBNB:</label>
+                        <input type="text" id="liquidity0" placeholder="e.g. 1000.00" />
+                        </p>
+                        <p><label for="liquidity1">sTSLA:</label>
+                        <input type="text" id="liquidity1" placeholder="e.g. 1000.00" />
+                        </p>
+                        <button onclick="App.init()">Initialize pool</button>
+                        <button onclick="App.addLiquidity()">Add liquidity</button>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card">
+                        <h3>Remove liquidity:</h3>
+                        <p>
+                            Your shares:<a class="shares"> &nbsp;<b>loading......</b>&nbsp; </a> 
+                        </p>
+                        <p><label for="shares">Amount:</label>
+                        <input type="text" id="shares" placeholder="shares to withdraw" />
+                        </p>
+                        <button onclick="App.checkShares()">Check shares</button>
+                        <button onclick="App.removeLiquidity()">Withdraw</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="Swap" class="tabcontent">
+            <div class="row">
+                <div class="column">
+                    <h3>Reserves:</h3>
+                    <p><strong class="reservesBNB">loading...</strong> sBNB</p>
+                    <p><strong class="reservesTSLA">loading...</strong> sTSLA</p>
+                </div>
+
+                <div class="column">
+                    <h3>Balances:</h3>
+                    <p><strong class="balancesBNB">loading...</strong> sBNB</p>
+                    <p><strong class="balancesTSLA">loading...</strong> sTSLA</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="column">
+                    <div class="card">
+                        <h3>Swap sBNB <span>&#8594;</span> sTSLA</h3>
+                        <p><label for="swap0">Amount:</label>
+                        <input type="text" id="swap0" placeholder="e.g. 1000.00" />
+                        </p>
+                        <button onclick="App.token0To1()">Swap</button>
+                    </div>
+                </div>
+
+                <div class="column">
+                    <div class="card">
+                        <h3>Swap sTSLA <span>&#8594;</span> sBNB</h3>
+                        <p><label for="swap1">Amount:</label>
+                        <input type="text" id="swap1" placeholder="e.g. 1000.00" />
+                        </p>
+                        <button onclick="App.token1To0()">Swap</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+
+        <p id="status"></p>
+        <p>
+            <strong>Hint:</strong> open the browser developer console to view any
+            errors and warnings.
+        </p>
+        <script src="index.js"></script>
+        <script>
+            function openPage(evt, pageName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(pageName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+            var slider = document.getElementById("CR");
+            var output = document.getElementById("CRvalue");
+            output.innerHTML = slider.value;
+
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+            }
+        </script>
+
+    </body>
+</html>
